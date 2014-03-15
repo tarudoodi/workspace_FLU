@@ -153,6 +153,7 @@ public class CustomDateTimePicker implements OnClickListener {
 			dialog.show();
 
 			btn_setDate.performClick();
+			
 		}
 	}
 
@@ -282,14 +283,18 @@ public class CustomDateTimePicker implements OnClickListener {
 												.get(Calendar.SECOND), getAMPM(calendar_date));
 			}
 			if (dialog.isShowing() && isAutoDismiss)
+			{
 				dialog.dismiss();
+			}
 			break;
 
 		case CANCEL:
 			if (iCustomDateTimeListener != null)
 				iCustomDateTimeListener.onCancel();
 			if (dialog.isShowing())
+			{
 				dialog.dismiss();
+			}
 			break;
 		}
 	}

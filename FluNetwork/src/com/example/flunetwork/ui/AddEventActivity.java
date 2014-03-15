@@ -1,8 +1,12 @@
 package com.example.flunetwork.ui;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Currency;
 import java.util.Date;
+import java.util.List;
+import java.util.Locale;
 
 import com.example.entity.eventendpoint.Eventendpoint;
 import com.example.entity.eventendpoint.model.Event;
@@ -21,32 +25,56 @@ import com.google.api.client.util.Data;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
+import android.content.Intent;
+import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.location.Address;
+import android.location.Geocoder;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.provider.Settings.Global;
+import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Filter;
+import android.widget.Filterable;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 
-public class AddEventActivity extends Activity{
+public class AddEventActivity extends Activity implements OnClickListener{
 
 	CustomDateTimePicker custom;
-	
+	Event newEvent = new Event();
+	Bitmap bmp;
+
+
 	EditText eventName;
-	EditText eventLocation;
+	AutoCompleteTextView eventLocation;
 	EditText eventDescription;
-	Event event; 
 	Button setEventTimeBtn;
-	
+	ImageView eventImageView;
+
 	String eventNameString;
 	String eventLocationString;
 	String eventTimeString;
 	String eventDescriptionString; 
+	double eventLat = 0;
+	double eventLong = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 
@@ -59,64 +87,68 @@ public class AddEventActivity extends Activity{
 
 		// get all view IDs for text
 		eventName = (EditText) findViewById(R.id.eventNameWhat);
-		eventLocation = (EditText) findViewById(R.id.eventLocationWhere);
+		eventLocation = (AutoCompleteTextView) findViewById(R.id.eventLocationWhere);
 		eventDescription = (EditText) findViewById(R.id.eventDescription);
 		setEventTimeBtn = (Button) findViewById(R.id.setDateTimeBtn);
+		eventImageView = (ImageView) findViewById(R.id.uploadImageView);
 
-		// instantiate to create an event
-		event = new Event();
-		
+		eventImageView.setOnClickListener(this);
+		eventLocation.setAdapter(new AutoCompleteAdapter(this));
+
 		custom = new CustomDateTimePicker(this,
-	            new CustomDateTimePicker.ICustomDateTimeListener() {
+				new CustomDateTimePicker.ICustomDateTimeListener() {
 
-	                @Override
-	                public void onSet(Dialog dialog, Calendar calendarSelected,
-	                        Date dateSelected, int year, String monthFullName,
-	                        String monthShortName, int monthNumber, int date,
-	                        String weekDayFullName, String weekDayShortName,
-	                        int hour24, int hour12, int min, int sec,
-	                        String AM_PM) {
-	                	/*setEventTimeBtn
+			@Override
+			public void onSet(Dialog dialog, Calendar calendarSelected,
+					Date dateSelected, int year, String monthFullName,
+					String monthShortName, int monthNumber, int date,
+					String weekDayFullName, String weekDayShortName,
+					int hour24, int hour12, int min, int sec,
+					String AM_PM) {
+				/*setEventTimeBtn
 	                            .setText(calendarSelected
 	                                            .get(Calendar.DAY_OF_MONTH)
 	                                   + "/" + (monthNumber+1) + "/" + year
 	                                    + ", " + hour12 + ":" + min
 	                                    + " " + AM_PM);*/
-	                	String minutes = String.valueOf(min);
-	                	if(min<10)
-	                	{
-	                		minutes = "0"+minutes;
-	                	}
-	                	setEventTimeBtn
-                        .setText(calendarSelected
-                                        .get(Calendar.DAY_OF_MONTH)
-                               + "/" + (monthNumber+1) + "/" + year
-                                + ", " + hour24 + minutes + " hrs");
-	                }
+				String minutes = String.valueOf(min);
+				if(min<10)
+				{
+					minutes = "0"+minutes;
+				}
+				setEventTimeBtn
+				.setText(calendarSelected
+						.get(Calendar.DAY_OF_MONTH)
+						+ "/" + (monthNumber+1) + "/" + year
+						+ ", " + hour24 + minutes + " hrs");
+				//newEvent.setEventTime(dateSelected);
+				setEventTimeBtn.setGravity(Gravity.LEFT);
+				setEventTimeBtn.setGravity(Gravity.CENTER_VERTICAL);
+			}
 
-	                @Override
-	                public void onCancel() {
+			@Override
+			public void onCancel() {
 
-	                }
-	            });
-	    /**
-	     * Pass Directly current time format it will return AM and PM if you set
-	     * false
-	     */
-	    custom.set24HourFormat(true);
-	    /**
-	     * Pass Directly current data and time to show when it pop up
-	     */
-	    custom.setDate(Calendar.getInstance());
+			}
+		});
+		/**
+		 * Pass Directly current time format it will return AM and PM if you set
+		 * false
+		 */
+		custom.set24HourFormat(true);
+		/**
+		 * Pass Directly current data and time to show when it pop up
+		 */
+		custom.setDate(Calendar.getInstance());
 
-	    setEventTimeBtn.setOnClickListener(
-	            new OnClickListener() {
+		setEventTimeBtn.setOnClickListener(
+				new OnClickListener() {
 
-	                @Override
-	                public void onClick(View v) {
-	                    custom.showDialog();
-	                }
-	            });
+					@Override
+					public void onClick(View v) {
+						custom.showDialog();
+					}
+				});
 	}
 
 
@@ -127,83 +159,228 @@ public class AddEventActivity extends Activity{
 			// TODO Auto-generated method stub
 			Boolean incompleteFlag = false;
 			// Make the colors to default
-			eventName.setBackgroundColor(Color.TRANSPARENT);
-			
+
+			resetUI();
 			eventNameString = eventName.getText().toString();
 			eventLocationString = eventLocation.getText().toString();
 			eventDescriptionString = eventDescription.getText().toString();
 
 			if(eventNameString == null || eventNameString.isEmpty())
 			{
-				eventName.setBackgroundColor(Color.LTGRAY);
+				eventName.setHintTextColor(Color.RED);
 				incompleteFlag = true;
 			}
-			
+			if(eventLocationString == null || eventLocationString.isEmpty())
+			{
+				eventLocation.setHintTextColor(Color.RED);
+				incompleteFlag = true;
+			}
+			//TODO check the date time is set and is valid.
+			//if()
 			if(incompleteFlag)
 			{
-				Toast.makeText(getApplicationContext(), "Looks like you missed these!!!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), "Looks like you missed some info there!!!", Toast.LENGTH_SHORT).show();
 			}
-			// check this comparison
-			if ((eventNameString.equals("")  || eventLocationString.equals("") || eventTimeString.equals("") || eventDescriptionString.equals(""))) 
-			{
-				Toast.makeText(getApplicationContext(),"Please fill all the fields.",Toast.LENGTH_SHORT).show();
-			} 
 			else 
 			{
+				//Toast.makeText(getApplicationContext(),"Your location is at LAT : "+newEvent.getEventLat().toString(),Toast.LENGTH_SHORT).show();
 				new CreateEventTask().execute();
 			}
 		}
 	};
-	
+
+	public void resetUI()
+	{
+		eventName.setHintTextColor(Color.LTGRAY);
+		eventLocation.setHintTextColor(Color.LTGRAY);
+		eventDescription.setHintTextColor(Color.LTGRAY);
+		setEventTimeBtn.setTextColor(Color.BLACK);
+
+	}
+
 	/**
-	   * AsyncTask for calling Mobile Assistant API for checking into a place (e.g., a store)
-	   */
-	  private class CreateEventTask extends AsyncTask<Void, Void, Void> {
+	 * AsyncTask for calling Mobile Assistant API for Pushing an event to the server
+	 */
+	private class CreateEventTask extends AsyncTask<Void, Void, Void> {
 
-	    /**
-	     * Calls appropriate CloudEndpoint to indicate that user checked into a place.
-	     *
-	     * @param params the place where the user is checking in.
-	     */
+		/**
+		 * Calls appropriate CloudEndpoint to add a user created event.
+		 *
+		 * @param params the event the user just created.
+		 */
 		@Override
-	    protected Void doInBackground(Void... params) {
-	    	// TODO eventLocationString == reverse geocode it.
-	    	
-	    	double eventLat = 0;
-	    	double eventLong = 0;
-	    	//new date
-	    	
-	    	Event newEvent = null;
-			if(MyGlobal.currentUser.getIsPublisher() == true)
-			{
-				newEvent = new Event();
-				newEvent.setEventName(eventNameString);
-				newEvent.setEventLat(eventLat);
-				newEvent.setEventLong(eventLong);
-				//newEvent.setEventTime(
-				
+		protected Void doInBackground(Void... params) {
+			// TODO eventLocationString == reverse geocode it.
+
+			//new date
+			newEvent = new Event();
+			newEvent.setEventName(eventNameString);
+			newEvent.setEventDescription(eventDescriptionString);
+			//newEvent.setEventTime(
+
+			//user.setLocation(new FluLocation(latitude,longitude)); TODO
+
+			Eventendpoint.Builder builder = new Eventendpoint.Builder(
+					AndroidHttp.newCompatibleTransport(), new JacksonFactory(),
+					null);
+
+			builder = CloudEndpointUtils.updateBuilder(builder);
+
+			Eventendpoint endpoint = builder.build();
+
+
+			try {
+				endpoint.insertEvent(newEvent).execute();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+
+			return null;
+		}
+	}
+
+	// And the corresponding Adapter
+	private class AutoCompleteAdapter extends ArrayAdapter<Address> implements Filterable {
+
+		private LayoutInflater inflater;
+		private Geocoder geocoder;
+		private StringBuilder locationSuggestion = new StringBuilder();
+
+		public AutoCompleteAdapter(final Context context) {
+			super(context, -1);
+			inflater = LayoutInflater.from(context);
+			geocoder = new Geocoder(context);
+		}
+
+		@Override
+		public View getView(final int position, final View convertView, final ViewGroup parent) {
+			final TextView tv;
+			if (convertView != null) {
+				tv = (TextView) convertView;
+			} else {
+				tv = (TextView) inflater.inflate(android.R.layout.simple_dropdown_item_1line, parent, false);
+			}
+
+			tv.setText(createFormattedAddressFromAddress(getItem(position)));
+			return tv;
+		}
+
+		private String createFormattedAddressFromAddress(final Address address) 
+		{
+			locationSuggestion.setLength(0);
+			final int addressLineSize = address.getMaxAddressLineIndex();
+
+			for (int i = 0; i < addressLineSize; i++) 
+			{
+				locationSuggestion.append(address.getAddressLine(i));
+				if (i != addressLineSize - 1) 
+				{
+					locationSuggestion.append(", ");
+				}
+			}
+			return locationSuggestion.toString();
+		}
+
+		@Override
+		public Filter getFilter() {
+			Filter myFilter = new Filter() {
+				@Override
+				protected FilterResults performFiltering(final CharSequence constraint) {
+					List<Address> addressList = null;
+					if (constraint != null) {
+						try {
+							addressList = geocoder.getFromLocationName((String) constraint, 5);
+						} catch (IOException e) {
+						}
+					}
+					if (addressList == null) {
+						addressList = new ArrayList<Address>();
+					}
+
+					final FilterResults filterResults = new FilterResults();
+					filterResults.values = addressList;
+					filterResults.count = addressList.size();
+
+					return filterResults;
+				}
+
+				@SuppressWarnings("unchecked")
+				@Override
+				protected void publishResults(final CharSequence contraint, final FilterResults results) {
+					clear();
+					for (Address address : (List<Address>) results.values) {
+						add(address);
+					}
+					if (results.count > 0) {
+						notifyDataSetChanged();
+					} else {
+						notifyDataSetInvalidated();
+					}
+				}
+
+				@Override
+				public CharSequence convertResultToString(final Object resultValue) 
+				{ 
+					newEvent.setEventLat(((Address)resultValue).getLatitude());
+					newEvent.setEventLong(((Address)resultValue).getLongitude());
+					return resultValue == null ? "" : ((Address) resultValue).getAddressLine(0)+", "+((Address) resultValue).getAddressLine(1);
+				}
+			};
+			return myFilter;
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		// TODO Auto-generated method stub
+		if(v == eventImageView)
+		{
+			openGallery();
+		}
+	}
+
+
+	private void openGallery()
+	{
+		Intent photoPickerIntent = new Intent(Intent.ACTION_GET_CONTENT);
+		photoPickerIntent.setType("image/*");
+		startActivityForResult(photoPickerIntent, 1);
+	}
+	
+	  @Override
+	  protected void onActivityResult(int requestCode, int resultcode, Intent intent)
+	  {
+	      super.onActivityResult(requestCode, resultcode, intent);
 	      
-	      //user.setLocation(new FluLocation(latitude,longitude)); TODO
-	      
-	      Eventendpoint.Builder builder = new Eventendpoint.Builder(
-	          AndroidHttp.newCompatibleTransport(), new JacksonFactory(),
-	          null);
-
-	      builder = CloudEndpointUtils.updateBuilder(builder);
-
-	      Eventendpoint endpoint = builder.build();
-
-
-	      try {
-	        endpoint.insertEvent(newEvent).execute();
-	      } catch (IOException e) {
-	        // TODO Auto-generated catch block
-	        e.printStackTrace();
+	      if (requestCode == 1) 
+	      {
+	          if (intent != null && resultcode == RESULT_OK) 
+	          {              
+	              
+	                Uri selectedImage = intent.getData();
+	                
+	                String[] filePathColumn = {MediaStore.Images.Media.DATA};
+	                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+	                cursor.moveToFirst();
+	                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+	                String filePath = cursor.getString(columnIndex);
+	                cursor.close();
+	              
+	                if(bmp != null && !bmp.isRecycled())
+	                {
+	                    bmp = null;                
+	                }
+	                                
+	                bmp = BitmapFactory.decodeFile(filePath);
+	                eventImageView.setBackgroundResource(0);
+	                eventImageView.setImageBitmap(bmp);              
+	          }
+	          else 
+	          {
+	              Log.d("Status:", "Photopicker canceled");            
+	          }
 	      }
-
-	      return null;
-	    }
 	  }
 }
 

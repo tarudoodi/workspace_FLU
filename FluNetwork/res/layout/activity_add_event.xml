@@ -20,7 +20,7 @@
         android:paddingLeft="20dip"
         android:textSize="20sp" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/eventLocationWhere"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
         style="@style/fluWideButtonLightStyle"/>
 
     <ImageView
-        android:id="@+id/uploadImageButton"
+        android:id="@+id/uploadImageView"
         android:layout_width="fill_parent"
         android:layout_height="0dp"
         android:layout_gravity="center_horizontal"

@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.example.entity.eventendpoint.model.Date;
+import com.google.api.client.util.DateTime;
 import com.example.entity.eventendpoint.model.Event;
 import com.example.flunetwork.R;
 import com.example.helper.GPSTracker;
@@ -42,7 +42,7 @@ public class EventDetailActivity extends FragmentActivity{
 		currentEvent.setEventLat(29.6433692 + .01);
 		currentEvent.setEventLong(-82.3474775);
 		currentEvent.setEventName("Awesome Event");
-		currentEvent.setEventTime(new Date());
+		//currentEvent.setEventTime(new Date());
 		
 	}
 	

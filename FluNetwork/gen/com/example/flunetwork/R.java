@@ -164,6 +164,7 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
+        public static final int buttonLightColor=0x7f04000c;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
          */
@@ -176,12 +177,12 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000d;
-        public static final int common_signin_btn_text_light=0x7f04000e;
+        public static final int common_signin_btn_text_dark=0x7f04000e;
+        public static final int common_signin_btn_text_light=0x7f04000f;
+        public static final int imageBackgroundGray=0x7f04000d;
         /**  COLORS 
          */
         public static final int mainPageBackgroundColor=0x7f04000a;
-        public static final int transparentColor=0x7f04000c;
         public static final int welcomeMessageColor=0x7f04000b;
     }
     public static final class dimen {
@@ -258,7 +259,7 @@ containing a value of this type.
         public static final int setDateTimeBtn=0x7f050008;
         public static final int submitEventButton=0x7f05000a;
         public static final int terrain=0x7f050003;
-        public static final int uploadImageButton=0x7f050009;
+        public static final int uploadImageView=0x7f050009;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -421,6 +422,10 @@ containing a value of this type.
  All customizations that are NOT specific to a particular API-level can go here. 
          */
         public static final int AppTheme=0x7f090001;
+        public static final int fluWideButtonLightStyle=0x7f090003;
+        /**  Adding custom themes  
+         */
+        public static final int fluWideButtonStyle=0x7f090002;
     }
     public static final class styleable {
         /** Attributes that can be used with a AdsAttrs.
