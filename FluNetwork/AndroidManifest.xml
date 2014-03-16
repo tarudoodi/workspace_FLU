@@ -49,11 +49,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.example.flunetwork.ui.RegisterActivity"
+            android:name="com.example.flunetwork.ui.EventDetailActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.flunetwork.ui.EventDetailActivity"
+            android:name="com.example.flunetwork.ui.RegisterActivity"
             android:label="@string/app_name" >
         </activity>
 

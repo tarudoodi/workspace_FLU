@@ -164,6 +164,10 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
+        /**   <color name="TextColorFlu">#28192C</color> 
+         */
+        public static final int TextColorFlu=0x7f04000e;
+        public static final int buttonBackgroundFlu=0x7f04000f;
         public static final int buttonLightColor=0x7f04000c;
         public static final int common_action_bar_splitter=0x7f040009;
         /**  Sign-in Button Colors 
@@ -177,8 +181,8 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f04000e;
-        public static final int common_signin_btn_text_light=0x7f04000f;
+        public static final int common_signin_btn_text_dark=0x7f040010;
+        public static final int common_signin_btn_text_light=0x7f040011;
         public static final int imageBackgroundGray=0x7f04000d;
         /**  COLORS 
          */
@@ -225,41 +229,45 @@ containing a value of this type.
         public static final int common_signin_btn_text_normal_light=0x7f020015;
         public static final int common_signin_btn_text_pressed_dark=0x7f020016;
         public static final int common_signin_btn_text_pressed_light=0x7f020017;
-        public static final int ic_launcher=0x7f020018;
-        public static final int ic_plusone_medium_off_client=0x7f020019;
-        public static final int ic_plusone_small_off_client=0x7f02001a;
-        public static final int ic_plusone_standard_off_client=0x7f02001b;
-        public static final int ic_plusone_tall_off_client=0x7f02001c;
+        public static final int ic_fireworks=0x7f020018;
+        public static final int ic_flu_image=0x7f020019;
+        public static final int ic_launcher=0x7f02001a;
+        public static final int ic_plusone_medium_off_client=0x7f02001b;
+        public static final int ic_plusone_small_off_client=0x7f02001c;
+        public static final int ic_plusone_standard_off_client=0x7f02001d;
+        public static final int ic_plusone_tall_off_client=0x7f02001e;
     }
     public static final class id {
-        public static final int action_settings=0x7f05001b;
-        public static final int eventAddButton=0x7f050014;
-        public static final int eventDescription=0x7f050007;
-        public static final int eventLayout=0x7f050017;
-        public static final int eventLocation=0x7f050019;
-        public static final int eventLocationWhere=0x7f050006;
-        public static final int eventName=0x7f050018;
-        public static final int eventNameWhat=0x7f050005;
-        public static final int eventTime=0x7f05001a;
-        public static final int eventinfoLayout=0x7f05000b;
-        public static final int goToMaps=0x7f050012;
+        public static final int action_settings=0x7f05001d;
+        public static final int alphaLayer=0x7f050005;
+        public static final int eventAddButton=0x7f050017;
+        public static final int eventDescription=0x7f050008;
+        public static final int eventLayout=0x7f050019;
+        public static final int eventLocation=0x7f05001b;
+        public static final int eventLocationWhere=0x7f050007;
+        public static final int eventName=0x7f05001a;
+        public static final int eventNameWhat=0x7f050006;
+        public static final int eventTime=0x7f05001c;
+        public static final int eventinfoDateLayout=0x7f05000d;
+        public static final int eventinfoLayout=0x7f05000c;
+        public static final int goToMaps=0x7f050015;
         public static final int hybrid=0x7f050004;
-        public static final int listView=0x7f050013;
-        public static final int mapDisplayLoc=0x7f050011;
-        public static final int mapLayout=0x7f050010;
-        public static final int msgView=0x7f050015;
+        public static final int listView=0x7f050016;
+        public static final int mapDisplayLoc=0x7f050014;
+        public static final int mapLayout=0x7f050013;
         public static final int none=0x7f050000;
         public static final int normal=0x7f050001;
-        public static final int oneEventDescription=0x7f05000f;
-        public static final int oneEventLocation=0x7f05000d;
-        public static final int oneEventName=0x7f05000c;
-        public static final int oneEventTime=0x7f05000e;
-        public static final int regButton=0x7f050016;
+        public static final int oneEventDate=0x7f05000e;
+        public static final int oneEventDescription=0x7f050012;
+        public static final int oneEventLocation=0x7f050011;
+        public static final int oneEventName=0x7f050010;
+        public static final int oneEventTime=0x7f05000f;
+        public static final int regButton=0x7f050018;
         public static final int satellite=0x7f050002;
-        public static final int setDateTimeBtn=0x7f050008;
-        public static final int submitEventButton=0x7f05000a;
+        public static final int setDateTimeBtn=0x7f050009;
+        public static final int submitEventButton=0x7f05000b;
         public static final int terrain=0x7f050003;
-        public static final int uploadImageView=0x7f050009;
+        public static final int uploadImageView=0x7f05000a;
     }
     public static final class integer {
         public static final int google_play_services_version=0x7f070000;
@@ -374,25 +382,26 @@ containing a value of this type.
         /**  Long form sign-in button text [CHAR LIMIT=30] 
          */
         public static final int common_signin_button_text_long=0x7f060013;
-        public static final int dateTimePicker=0x7f06002e;
-        public static final int evenLocationWhere=0x7f060026;
-        public static final int eventDescription=0x7f06002c;
+        public static final int dateTimePicker=0x7f06002f;
+        public static final int evenLocationWhere=0x7f060027;
+        public static final int eventDate=0x7f060024;
+        public static final int eventDescription=0x7f06002d;
         public static final int eventLocation=0x7f060022;
         public static final int eventName=0x7f060021;
-        public static final int eventNameWhat=0x7f060025;
+        public static final int eventNameWhat=0x7f060026;
         public static final int eventTime=0x7f060023;
-        public static final int eventTimeWhen=0x7f060027;
-        public static final int goToMaps=0x7f06002d;
+        public static final int eventTimeWhen=0x7f060028;
+        public static final int goToMaps=0x7f06002e;
         public static final int hello_world=0x7f06001c;
         public static final int hintUsername=0x7f06001f;
         public static final int logInButton=0x7f06001e;
-        public static final int oneEventDescription=0x7f06002b;
-        public static final int submitEvent=0x7f060028;
-        public static final int title_activity_add_event=0x7f060024;
-        public static final int title_activity_event_detail=0x7f06002f;
-        public static final int title_activity_event_list=0x7f06002a;
+        public static final int oneEventDescription=0x7f06002c;
+        public static final int submitEvent=0x7f060029;
+        public static final int title_activity_add_event=0x7f060025;
+        public static final int title_activity_event_detail=0x7f060030;
+        public static final int title_activity_event_list=0x7f06002b;
         public static final int title_activity_events_page=0x7f060020;
-        public static final int uploadImage=0x7f060029;
+        public static final int uploadImage=0x7f06002a;
         public static final int welcomeMessage=0x7f06001d;
     }
     public static final class style {

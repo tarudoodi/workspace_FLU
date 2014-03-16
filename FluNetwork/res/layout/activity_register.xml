@@ -3,21 +3,21 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
 
-    android:gravity="center_vertical|center_horizontal|center"
-    android:orientation="vertical" >
-    
-  <TextView 
-      android:id="@+id/msgView"
-      android:layout_width="fill_parent"
-      android:layout_height="wrap_content"
-      android:layout_weight="1" />
+    android:gravity="bottom|center_horizontal"
+    android:orientation="vertical" 
+    android:background="@drawable/ic_flu_image">
     	
   <Button
       android:id="@+id/regButton"
       android:layout_width="fill_parent"
       android:layout_height="wrap_content"
-      android:layout_weight="0"
-      android:visibility="invisible"
-      android:text="@string/logInButton" />
+      android:visibility="visible"
+      android:text="@string/logInButton"
+      android:textColor="@color/TextColorFlu"
+      android:textStyle="bold"
+      android:background="@color/buttonBackgroundFlu"
+      android:textSize="25sp"
+      android:typeface="sans"
+      style = "@style/fluWideButtonLightStyle" />
 
 </LinearLayout>

@@ -18,17 +18,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class EventDetailActivity extends FragmentActivity{
 
 	GoogleMap map;
 	Event currentEvent;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +45,7 @@ public class EventDetailActivity extends FragmentActivity{
 		currentEvent.setEventLat(29.6433692 + .01);
 		currentEvent.setEventLong(-82.3474775);
 		currentEvent.setEventName("Awesome Event");
+		
 		//currentEvent.setEventTime(new Date());
 		
 	}
