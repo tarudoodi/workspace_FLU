@@ -1,7 +1,7 @@
 package com.example.entity;
 
 
-import java.sql.Date;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -31,6 +31,7 @@ public class Event {
 	private Date eventTime;
 	private double eventLong;
 	private double eventLat;
+	private String eventLocation;
 	private EventType eventType; //Unused -- we hope future generations can use it \m/!!!
 	private String eventDescription;
 	private String eventName;
@@ -137,6 +138,14 @@ public class Event {
 
 	public void setEventDescription(String eventDescription) {
 		this.eventDescription = eventDescription;
+	}
+
+	public String getEventLocation() {
+		return eventLocation;
+	}
+
+	public void setEventLocation(String eventLocation) {
+		this.eventLocation = eventLocation;
 	}
 }
 /**

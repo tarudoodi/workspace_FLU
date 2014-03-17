@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/kMjdyKOIPl9FOYY35Hnjw6D6VsM\"",
+ "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/UoNbiAP_fuGlVDUO-ONJxFLo2PI\"",
  "discoveryVersion": "v1",
  "id": "eventendpoint:v1",
  "name": "eventendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/eventendpoint/v1/",
+ "baseUrl": "https://flu-network.appspot.com/_ah/api/eventendpoint/v1/",
  "basePath": "/_ah/api/eventendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://flu-network.appspot.com/_ah/api/",
  "servicePath": "eventendpoint/v1/",
  "batchPath": "batch",
  "parameters": {
@@ -89,48 +89,6 @@
     }
    }
   },
-  "Date": {
-   "id": "Date",
-   "type": "object",
-   "properties": {
-    "date": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "day": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "hours": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "minutes": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "month": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "seconds": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "time": {
-     "type": "string",
-     "format": "int64"
-    },
-    "timezoneOffset": {
-     "type": "integer",
-     "format": "int32"
-    },
-    "year": {
-     "type": "integer",
-     "format": "int32"
-    }
-   }
-  },
   "Event": {
    "id": "Event",
    "type": "object",
@@ -146,6 +104,9 @@
      "type": "number",
      "format": "double"
     },
+    "eventLocation": {
+     "type": "string"
+    },
     "eventLong": {
      "type": "number",
      "format": "double"
@@ -154,7 +115,8 @@
      "type": "string"
     },
     "eventTime": {
-     "$ref": "Date"
+     "type": "string",
+     "format": "date-time"
     },
     "eventType": {
      "$ref": "EventType"

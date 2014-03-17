@@ -25,15 +25,15 @@ public class User {
 	private PhoneNumber phoneNumber;
 	private String userName;
 	private Boolean isPublisher;
-	private double eventLong;
-	private double eventLat;
+	private double userLong;
+	private double userLat;
 	
 	public User() {
 		phoneNumber = null;
 		userName = "Anonymous";
 		isPublisher = false;
-		eventLat = 0.0;
-		eventLong = 0.0;
+		userLat = 0.0;
+		userLong = 0.0;
 	}
 	
 	/**
@@ -64,19 +64,19 @@ public class User {
 		this.isPublisher = isPublisher;
 	}
 	public double getEventLong() {
-		return eventLong;
+		return userLong;
 	}
 
 	public void setEventLong(double eventLong) {
-		this.eventLong = eventLong;
+		this.userLong = eventLong;
 	}
 
 	public double getEventLat() {
-		return eventLat;
+		return userLat;
 	}
 
 	public void setEventLat(double eventLat) {
-		this.eventLat = eventLat;
+		this.userLat = eventLat;
 	}
 	
 }
