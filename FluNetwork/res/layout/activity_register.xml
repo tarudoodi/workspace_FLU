@@ -13,7 +13,7 @@
       android:layout_height="wrap_content"
       android:visibility="visible"
       android:text="@string/logInButton"
-      android:textColor="@color/TextColorFlu"
+      android:textColor="@color/textColorFlu"
       android:textStyle="bold"
       android:background="@color/buttonBackgroundFlu"
       android:textSize="25sp"

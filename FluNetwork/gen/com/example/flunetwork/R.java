@@ -164,9 +164,7 @@ containing a value of this type.
         public static final int zOrderOnTop=0x7f010010;
     }
     public static final class color {
-        /**   <color name="TextColorFlu">#28192C</color> 
-         */
-        public static final int TextColorFlu=0x7f04000e;
+        public static final int actionBarBackgroundColor=0x7f040010;
         public static final int buttonBackgroundFlu=0x7f04000f;
         public static final int buttonLightColor=0x7f04000c;
         public static final int common_action_bar_splitter=0x7f040009;
@@ -181,12 +179,15 @@ containing a value of this type.
         public static final int common_signin_btn_light_text_disabled=0x7f040006;
         public static final int common_signin_btn_light_text_focused=0x7f040007;
         public static final int common_signin_btn_light_text_pressed=0x7f040005;
-        public static final int common_signin_btn_text_dark=0x7f040010;
-        public static final int common_signin_btn_text_light=0x7f040011;
+        public static final int common_signin_btn_text_dark=0x7f040011;
+        public static final int common_signin_btn_text_light=0x7f040012;
         public static final int imageBackgroundGray=0x7f04000d;
         /**  COLORS 
          */
         public static final int mainPageBackgroundColor=0x7f04000a;
+        /**   <color name="textColorFlu">#28192C</color> 
+         */
+        public static final int textColorFlu=0x7f04000e;
         public static final int welcomeMessageColor=0x7f04000b;
     }
     public static final class dimen {
@@ -428,11 +429,11 @@ containing a value of this type.
          */
         public static final int AppBaseTheme=0x7f090000;
         /**  Application theme. 
- All customizations that are NOT specific to a particular API-level can go here. 
          */
-        public static final int AppTheme=0x7f090001;
+        public static final int FluAppTheme=0x7f090001;
+        public static final int fluActionBarBackground=0x7f090004;
         public static final int fluWideButtonLightStyle=0x7f090003;
-        /**  Adding custom themes  
+        /**  Adding custom styles  
          */
         public static final int fluWideButtonStyle=0x7f090002;
     }

@@ -15,9 +15,10 @@
     <color name="welcomeMessageColor">#FFFF0000</color>
     <color name="buttonLightColor">#30bcbcbc</color>
     <color name="imageBackgroundGray">#ffbcbcbc</color>
-   <!--  <color name="TextColorFlu">#28192C</color> -->
-    <color name="TextColorFlu">#39233E</color>
+   <!--  <color name="textColorFlu">#28192C</color> -->
+    <color name="textColorFlu">#39233E</color>
     <color name="buttonBackgroundFlu">#80C2906A</color>
+    <color name="actionBarBackgroundColor">#C2906A</color>
 
     <string name="title_activity_events_page">EventsPage</string>
     <string name="eventName">Fireworks Show</string>

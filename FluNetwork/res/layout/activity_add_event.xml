@@ -50,7 +50,7 @@
             android:id="@+id/setDateTimeBtn"
             style="@style/fluWideButtonLightStyle"
             android:text="@string/dateTimePicker"
-            android:textColor="@color/TextColorFlu"
+            android:textColor="@color/textColorFlu"
             android:textSize="18sp" />
 
         <ImageView
