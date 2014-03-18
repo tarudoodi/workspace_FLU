@@ -145,10 +145,13 @@
           "isPublisher" : {
             "type" : "boolean"
           },
-          "eventLong" : {
+          "userLong" : {
             "type" : "number"
           },
-          "eventLat" : {
+          "userLat" : {
+            "type" : "number"
+          },
+          "usertLat" : {
             "type" : "number"
           }
         }

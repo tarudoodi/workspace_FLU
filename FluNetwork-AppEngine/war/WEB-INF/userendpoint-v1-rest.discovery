@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/ba9O_zNvrM6utBYtQqHw9lMLKzY\"",
+ "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/jJm_3n_BSsGjsSXncvrTySE8M0s\"",
  "discoveryVersion": "v1",
  "id": "userendpoint:v1",
  "name": "userendpoint",
@@ -130,14 +130,6 @@
    "id": "User",
    "type": "object",
    "properties": {
-    "eventLat": {
-     "type": "number",
-     "format": "double"
-    },
-    "eventLong": {
-     "type": "number",
-     "format": "double"
-    },
     "isPublisher": {
      "type": "boolean"
     },
@@ -147,8 +139,20 @@
     "phoneNumber": {
      "$ref": "PhoneNumber"
     },
+    "userLat": {
+     "type": "number",
+     "format": "double"
+    },
+    "userLong": {
+     "type": "number",
+     "format": "double"
+    },
     "userName": {
      "type": "string"
+    },
+    "usertLat": {
+     "type": "number",
+     "format": "double"
     }
    }
   }

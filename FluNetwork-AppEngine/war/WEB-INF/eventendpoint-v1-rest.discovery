@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/UoNbiAP_fuGlVDUO-ONJxFLo2PI\"",
+ "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/YroEBkaOWg1NuHMlG4nDmYpaU7M\"",
  "discoveryVersion": "v1",
  "id": "eventendpoint:v1",
  "name": "eventendpoint",
@@ -125,7 +125,8 @@
      "$ref": "Key"
     },
     "ownerId": {
-     "$ref": "Key"
+     "type": "string",
+     "format": "int64"
     },
     "upVotes": {
      "type": "string",

@@ -27,7 +27,7 @@ public class Event {
 	/**
 	 * Mandatory fields at the time of event creation
 	 */
-	private Key ownerId;
+	private long ownerId;
 	private Date eventTime;
 	private double eventLong;
 	private double eventLat;
@@ -43,7 +43,7 @@ public class Event {
 	 * 
 	 */
 	public Event() {
-		ownerId = null;
+		ownerId = 0;
 		upVotes = 0;
 		downVotes = 0;
 		eventTime = null ;
@@ -61,7 +61,7 @@ public class Event {
 	 * @param eventLocation The GPS coordinates of the event	
 	 * @param eventType The type of event being created. Use enumeration Event.EventType.
 	 */
-	public Event(Key ownerId, Date eventTime, double eventLat, double eventLong, String eventName,String eventDescription)
+	public Event(long ownerId, Date eventTime, double eventLat, double eventLong, String eventName,String eventDescription)
 			//,EventType eventType)  
 	{
 		super();
@@ -74,10 +74,10 @@ public class Event {
 	}
 
 
-	public Key getOwnerId() {
+	public long getOwnerId() {
 		return ownerId;
 	}
-	public void setOwnerId(Key ownerId) {
+	public void setOwnerId(long ownerId) {
 		this.ownerId = ownerId;
 	}
 	public long getUpVotes() {

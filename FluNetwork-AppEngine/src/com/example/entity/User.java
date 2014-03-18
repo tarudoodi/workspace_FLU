@@ -28,13 +28,13 @@ public class User {
 	private double userLong;
 	private double userLat;
 	
-	public User() {
+/*	public User() {
 		phoneNumber = null;
 		userName = "Anonymous";
 		isPublisher = false;
 		userLat = 0.0;
 		userLong = 0.0;
-	}
+	}*/
 	
 	/**
 	 * Key is read only.
@@ -63,20 +63,20 @@ public class User {
 	public void setIsPublisher(Boolean isPublisher) {
 		this.isPublisher = isPublisher;
 	}
-	public double getEventLong() {
+	public double getUserLong() {
 		return userLong;
 	}
 
-	public void setEventLong(double eventLong) {
-		this.userLong = eventLong;
+	public void setUserLong(double userLong) {
+		this.userLong = userLong;
 	}
 
-	public double getEventLat() {
+	public double getUsertLat() {
 		return userLat;
 	}
 
-	public void setEventLat(double eventLat) {
-		this.userLat = eventLat;
+	public void setUserLat(double userLat) {
+		this.userLat = userLat;
 	}
 	
 }

@@ -160,7 +160,8 @@
             "format" : "int64"
           },
           "ownerId" : {
-            "$ref" : "Key"
+            "type" : "string",
+            "format" : "int64"
           },
           "eventTime" : {
             "type" : "string",
