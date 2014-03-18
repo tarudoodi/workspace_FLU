@@ -40,7 +40,7 @@
         android:label="@string/app_name"
         android:theme="@style/FluAppTheme" >
         <activity
-            android:name="com.example.flunetwork.ui.AddEventActivity"
+            android:name="com.example.flunetwork.ui.RegisterActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +53,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.flunetwork.ui.RegisterActivity"
+            android:name="com.example.flunetwork.ui.AddEventActivity"
             android:label="@string/app_name" >
         </activity>
 
@@ -80,7 +80,7 @@
          
          <meta-data
             android:name="com.google.android.maps.v2.API_KEY"
-            android:value="AIzaSyCxER5UDq2KfX2hoHdlYrw9U-m94XquxCM" />
+            android:value="AIzaSyB_8PJWnA-oJR2KJLpvda59mPiNKTMspEg" />
          
     </application>
 

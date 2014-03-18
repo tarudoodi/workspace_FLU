@@ -4,10 +4,11 @@ import java.io.IOException;
 
 import com.example.entity.userendpoint.Userendpoint;
 import com.example.entity.userendpoint.model.PhoneNumber;
+import com.example.entity.userendpoint.model.User;
 import com.example.flunetwork.CloudEndpointUtils;
 import com.example.flunetwork.R;
-import com.example.helper.GPSTracker;
-import com.example.helper.MyGlobal;
+import com.example.flunetwork.helper.GPSTracker;
+import com.example.flunetwork.helper.MyGlobal;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.jackson.JacksonFactory;
 
@@ -19,6 +20,7 @@ import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class RegisterActivity extends Activity implements OnClickListener{
 
@@ -57,7 +59,8 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		}
 		else
 		{
-			startActivity(new Intent(this,LandingActivity.class));
+			//TODO navigate to landing activity
+			startActivity(new Intent(this,EventDetailActivity.class));
 		}
 	}
 
@@ -73,7 +76,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		if(v == registerBtn)
 		{
 			new CreateUserTask().execute();
-			startActivity(new Intent(this,LandingActivity.class));
+			
 		}
 	}
 	
@@ -88,14 +91,16 @@ public class RegisterActivity extends Activity implements OnClickListener{
 	     *
 	     * @param params the place where the user is checking in.
 	     */
-	    @Override
+		  
+		@Override
 	    protected Void doInBackground(Void... params) {
-	      
-	      // Set the ID of the store where the user is.
-	      // This would be replaced by the actual ID in the final version of the code.
-	      MyGlobal.currentUser.setUserName("Taru");
-	      MyGlobal.currentUser.setPhoneNumber(new PhoneNumber().setNumber("1234567890"));
-	      //user.setLocation(new FluLocation(latitude,longitude)); TODO
+	      User newUser = new User();
+	      newUser.setUserName("Nik");
+	      newUser.setPhoneNumber(new PhoneNumber().setNumber("1234567890"));
+	      newUser.setUserLat(MyGlobal.currentLoc.getLatitude());
+	      newUser.setUserLong(MyGlobal.currentLoc.getLongitude());
+	      newUser.setIsPublisher(false);
+	      // TODO push user location
 	      
 	      Userendpoint.Builder builder = new Userendpoint.Builder(
 	          AndroidHttp.newCompatibleTransport(), new JacksonFactory(),
@@ -107,12 +112,33 @@ public class RegisterActivity extends Activity implements OnClickListener{
 
 
 	      try {
-	        endpoint.insertUser(MyGlobal.currentUser).execute();
+	        MyGlobal.currentUser = endpoint.insertUser(newUser).execute();
 	      } catch (IOException e) {
 	        e.printStackTrace();
 	      }
 
 	      return null;
 	    }
+		@Override
+		protected void onPostExecute(Void result) {
+				// TODO Put some kind of progress bar
+			super.onPostExecute(result);
+			/*if(result != null)
+			{*/
+				if(MyGlobal.currentUser != null)
+				{
+					//TODO navigate to landing activity
+					startActivity(new Intent(getApplicationContext(),EventDetailActivity.class));
+				}
+				else
+				{
+					Toast.makeText(getApplicationContext(), "Could not contact server", Toast.LENGTH_SHORT).show();
+				}
+			/*}
+			else
+			{
+				Toast.makeText(getApplicationContext(), "Could not contact server", Toast.LENGTH_SHORT).show();
+			}*/
+        }
 	  }
 }
