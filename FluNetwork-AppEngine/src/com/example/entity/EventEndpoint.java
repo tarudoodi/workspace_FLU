@@ -151,6 +151,8 @@ public class EventEndpoint {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
+			if(event.getKey() == null)
+				return false;
 			Event item = mgr.find(Event.class, event.getKey());
 			if (item == null) {
 				contains = false;
