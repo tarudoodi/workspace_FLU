@@ -5,7 +5,7 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="19"
+        android:minSdkVersion="18"
         android:targetSdkVersion="19" />
 
     <uses-permission android:name="android.permission.INTERNET" />
@@ -40,7 +40,7 @@
         android:label="@string/app_name"
         android:theme="@style/FluAppTheme" >
         <activity
-            android:name="com.example.flunetwork.ui.RegisterActivity"
+            android:name="com.example.flunetwork.ui.AddEventActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -53,7 +53,7 @@
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.flunetwork.ui.AddEventActivity"
+            android:name="com.example.flunetwork.ui.RegisterActivity"
             android:label="@string/app_name" >
         </activity>
 

@@ -3,25 +3,20 @@ package com.example.flunetwork.ui;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Currency;
 import java.util.Date;
 import java.util.List;
-import java.util.Locale;
+import java.util.Random;
+import java.util.logging.ErrorManager;
 
 import com.example.entity.eventendpoint.Eventendpoint;
 import com.example.entity.eventendpoint.model.Event;
-import com.example.entity.userendpoint.Userendpoint;
-import com.example.entity.userendpoint.model.PhoneNumber;
-import com.example.entity.userendpoint.model.User;
 import com.example.flunetwork.CloudEndpointUtils;
 import com.example.flunetwork.R;
-import com.example.flunetwork.R.layout;
 import com.example.flunetwork.helper.CustomDateTimePicker;
 import com.example.flunetwork.helper.MyGlobal;
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.json.jackson.JacksonFactory;
-import com.google.api.client.util.Data;
-
+import com.google.api.client.util.DateTime;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -37,7 +32,6 @@ import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.provider.Settings.Global;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -58,7 +52,7 @@ import android.widget.Toast;
 public class AddEventActivity extends Activity implements OnClickListener{
 
 	CustomDateTimePicker custom;
-	Event newEvent = new Event();
+	Event newEvent;
 	Bitmap bmp;
 
 
@@ -121,7 +115,7 @@ public class AddEventActivity extends Activity implements OnClickListener{
 						.get(Calendar.DAY_OF_MONTH)
 						+ "/" + (monthNumber+1) + "/" + year
 						+ ", " + hour24 + minutes + " hrs");
-				//newEvent.setEventTime(dateSelected);
+				newEvent.setEventTime(new DateTime(dateSelected));
 				setEventTimeBtn.setGravity(Gravity.LEFT);
 				setEventTimeBtn.setGravity(Gravity.CENTER_VERTICAL);
 			}
@@ -151,16 +145,24 @@ public class AddEventActivity extends Activity implements OnClickListener{
 				});
 	}
 
+	@Override
+	protected void onResume() {
+		super.onResume();
+		newEvent = new Event();
+		newEvent.setEventLat(MyGlobal.IMPOSSIBLE_LOCATION);
+		newEvent.setEventLong(MyGlobal.IMPOSSIBLE_LOCATION);
+	}
+
 
 	//@Override
 	public OnClickListener submitEvent = new OnClickListener() {
 
 		public void onClick(View v) {
-			// TODO Auto-generated method stub
 			Boolean incompleteFlag = false;
-			// Make the colors to default
-
+			String errorMsg = "Come on!!! You have to tell us more.";
+			// Resetting the UI
 			resetUI();
+
 			eventNameString = eventName.getText().toString();
 			eventLocationString = eventLocation.getText().toString();
 			eventDescriptionString = eventDescription.getText().toString();
@@ -176,14 +178,33 @@ public class AddEventActivity extends Activity implements OnClickListener{
 				incompleteFlag = true;
 			}
 			//TODO check the date time is set and is valid.
-			//if()
+			if(custom.isDateSet() == false)
+			{
+				setEventTimeBtn.setTextColor(Color.RED);
+				incompleteFlag = true;
+			}
+			//TODO make this work
+		/*	if(newEvent.getEventLat() == MyGlobal.IMPOSSIBLE_LOCATION 
+					|| newEvent.getEventLong() == MyGlobal.IMPOSSIBLE_LOCATION)
+			{
+				if(incompleteFlag)
+				{
+					errorMsg = errorMsg + "\n Also, ";
+					errorMsg = "Please pick a location nearest to the event location from the suggestions.";
+				}
+				else
+				{
+					incompleteFlag = true;
+					errorMsg = "Please pick a location nearest to the event location from the suggestions.";
+				}
+			}*/
 			if(incompleteFlag)
 			{
-				Toast.makeText(getApplicationContext(), "Looks like you missed some info there!!!", Toast.LENGTH_SHORT).show();
+				Toast.makeText(getApplicationContext(), errorMsg, Toast.LENGTH_LONG).show();
+				Toast.makeText(getApplicationContext(), "We know!!! Our programmers are lazy!!!", Toast.LENGTH_SHORT).show();
 			}
 			else 
 			{
-				//Toast.makeText(getApplicationContext(),"Your location is at LAT : "+newEvent.getEventLat().toString(),Toast.LENGTH_SHORT).show();
 				new CreateEventTask().execute();
 			}
 		}
@@ -194,8 +215,7 @@ public class AddEventActivity extends Activity implements OnClickListener{
 		eventName.setHintTextColor(Color.LTGRAY);
 		eventLocation.setHintTextColor(Color.LTGRAY);
 		eventDescription.setHintTextColor(Color.LTGRAY);
-		setEventTimeBtn.setTextColor(Color.BLACK);
-
+		setEventTimeBtn.setTextColor(getResources().getColor(R.color.textColorFlu));
 	}
 
 	/**
@@ -210,10 +230,10 @@ public class AddEventActivity extends Activity implements OnClickListener{
 		 */
 		@Override
 		protected Void doInBackground(Void... params) {
-			// TODO eventLocationString == reverse geocode it.
+			// TODO Assuming that the string entered in the description
+			// is a well defined location, and can be reverse geocoded.
 
 			//new date
-			newEvent = new Event();
 			newEvent.setEventName(eventNameString);
 			newEvent.setEventDescription(eventDescriptionString);
 			//newEvent.setEventTime(
@@ -290,6 +310,8 @@ public class AddEventActivity extends Activity implements OnClickListener{
 					List<Address> addressList = null;
 					if (constraint != null) {
 						try {
+							//newEvent.setEventLat(MyGlobal.IMPOSSIBLE_LOCATION);
+							//newEvent.setEventLong(MyGlobal.IMPOSSIBLE_LOCATION);
 							addressList = geocoder.getFromLocationName((String) constraint, 5);
 						} catch (IOException e) {
 						}
@@ -347,41 +369,41 @@ public class AddEventActivity extends Activity implements OnClickListener{
 		photoPickerIntent.setType("image/*");
 		startActivityForResult(photoPickerIntent, 1);
 	}
-	
-	  @Override
-	  protected void onActivityResult(int requestCode, int resultcode, Intent intent)
-	  {
-	      super.onActivityResult(requestCode, resultcode, intent);
-	      
-	      if (requestCode == 1) 
-	      {
-	          if (intent != null && resultcode == RESULT_OK) 
-	          {              
-	              
-	                Uri selectedImage = intent.getData();
-	                
-	                String[] filePathColumn = {MediaStore.Images.Media.DATA};
-	                Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
-	                cursor.moveToFirst();
-	                int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-	                String filePath = cursor.getString(columnIndex);
-	                cursor.close();
-	              
-	                if(bmp != null && !bmp.isRecycled())
-	                {
-	                    bmp = null;                
-	                }
-	                                
-	                bmp = BitmapFactory.decodeFile(filePath);
-	                eventImageView.setBackgroundResource(0);
-	                eventImageView.setImageBitmap(bmp);              
-	          }
-	          else 
-	          {
-	              Log.d("Status:", "Photopicker canceled");            
-	          }
-	      }
-	  }
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultcode, Intent intent)
+	{
+		super.onActivityResult(requestCode, resultcode, intent);
+
+		if (requestCode == 1) 
+		{
+			if (intent != null && resultcode == RESULT_OK) 
+			{              
+
+				Uri selectedImage = intent.getData();
+
+				String[] filePathColumn = {MediaStore.Images.Media.DATA};
+				Cursor cursor = getContentResolver().query(selectedImage, filePathColumn, null, null, null);
+				cursor.moveToFirst();
+				int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+				String filePath = cursor.getString(columnIndex);
+				cursor.close();
+
+				if(bmp != null && !bmp.isRecycled())
+				{
+					bmp = null;                
+				}
+
+				bmp = BitmapFactory.decodeFile(filePath);
+				eventImageView.setBackgroundResource(0);
+				eventImageView.setImageBitmap(bmp);              
+			}
+			else 
+			{
+				Log.d("Status:", "Photopicker canceled");            
+			}
+		}
+	}
 }
 
 

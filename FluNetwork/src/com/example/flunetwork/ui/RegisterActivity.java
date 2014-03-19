@@ -95,7 +95,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 		@Override
 	    protected Void doInBackground(Void... params) {
 	      User newUser = new User();
-	      newUser.setUserName("Nik");
+	      newUser.setUserName("Niket");
 	      newUser.setPhoneNumber(new PhoneNumber().setNumber("1234567890"));
 	      newUser.setUserLat(MyGlobal.currentLoc.getLatitude());
 	      newUser.setUserLong(MyGlobal.currentLoc.getLongitude());

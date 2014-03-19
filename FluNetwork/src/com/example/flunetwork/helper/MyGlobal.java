@@ -14,4 +14,7 @@ public class MyGlobal {
 	public static User currentUser = null;
 	public static Event currentEvent = null;
 
+	
+	//Constants
+	public static final double IMPOSSIBLE_LOCATION = 9999.9;
 }
