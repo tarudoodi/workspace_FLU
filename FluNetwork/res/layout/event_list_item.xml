@@ -44,5 +44,16 @@
         android:text="@string/eventTime"
         android:textSize="20sp"
         android:textStyle="bold" />
+    
+     <TextView
+        android:id="@+id/eventDescriptionView"
+        android:layout_width="wrap_content"
+        android:layout_height="80dp"
+        android:layout_gravity="right"
+        android:gravity="right"
+        android:paddingLeft="20dip"
+        android:text="@string/eventDescription"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 
 </LinearLayout>

@@ -40,7 +40,7 @@
         android:label="@string/app_name"
         android:theme="@style/FluAppTheme" >
         <activity
-            android:name="com.example.flunetwork.ui.AddEventActivity"
+            android:name="com.example.flunetwork.ui.LandingActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -48,12 +48,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+           <activity
+            android:name="com.example.flunetwork.ui.RegisterActivity"
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name="com.example.flunetwork.ui.EventDetailActivity"
             android:label="@string/app_name" >
         </activity>
         <activity
-            android:name="com.example.flunetwork.ui.RegisterActivity"
+            android:name="com.example.flunetwork.ui.AddEventActivity"
             android:label="@string/app_name" >
         </activity>
 

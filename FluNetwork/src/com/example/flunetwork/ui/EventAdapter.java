@@ -15,13 +15,12 @@ import com.example.flunetwork.R;
 
 public class EventAdapter extends ArrayAdapter<Event> {
 	   
-//	   private List<events> planetList;
-	   //ArrayList<Event> myEvents = Event.getList(); TODO
+	   private List<Event> EventList;
 	   private Context context;
 	    
 	   public EventAdapter(List<Event> myEvents , Context ctx) {
 	       super(ctx, R.layout.event_list_item, myEvents);
-	   //    this.myEvents = (ArrayList<Event>) myEvents; TODO
+	       this.EventList = (ArrayList<Event>) myEvents; 
 	       this.context = ctx;
 	   }
 	    
@@ -37,13 +36,19 @@ public class EventAdapter extends ArrayAdapter<Event> {
 	           TextView eventNameView = (TextView) convertView.findViewById(R.id.eventName);
 	           TextView eventLocationView = (TextView) convertView.findViewById(R.id.eventLocation);
 	           TextView eventTimeView = (TextView) convertView.findViewById(R.id.eventTime);
+	           TextView eventDescriptionView = (TextView) convertView.findViewById(R.id.eventDescriptionView);
 	           //Event eventId = myEvents.get(position); TODO
 	           
-	           // TODO remove comments
-	           //eventNameView.setText(eventId.getEventName());
-	           //eventLocationView.setText(eventId.getEventLocation().getLatitude().toString()+", "+eventId.getEventLocation().getLongitude().toString());
-	           //eventTimeView.setText(eventId.getEventTime().toString());
-	           //distView.setText("" + p.getDistance());
+	           // TODO Perform NULL checks
+	           if(EventList.get(position).getEventName() != null)
+	        	   eventNameView.setText(EventList.get(position).getEventName().toString());
+	           //TODO Change this to show the location string 
+	           //if(EventList.get(position).getEventLocation() != null)
+	        	   eventLocationView.setText(EventList.get(position).getEventLat().toString()+", "+ EventList.get(position).getEventLong().toString());
+	           if(EventList.get(position).getEventTime() != null)
+	        	   eventTimeView.setText(EventList.get(position).getEventTime().toString());
+	           if(EventList.get(position).getEventDescription() != null)
+	        	   eventDescriptionView.setText(EventList.get(position).getEventDescription().toString());
 	       return convertView;
 	   }
 	   

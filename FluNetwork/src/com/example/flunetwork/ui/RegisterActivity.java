@@ -128,7 +128,7 @@ public class RegisterActivity extends Activity implements OnClickListener{
 				if(MyGlobal.currentUser != null)
 				{
 					//TODO navigate to landing activity
-					startActivity(new Intent(getApplicationContext(),EventDetailActivity.class));
+					startActivity(new Intent(getApplicationContext(),LandingActivity.class));
 				}
 				else
 				{

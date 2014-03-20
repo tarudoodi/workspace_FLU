@@ -53,6 +53,8 @@ public class EventDetailActivity extends FragmentActivity{
 	@Override
 	protected void onResume() {
 		super.onResume();
+		this.setTitle(currentEvent.getEventName());
+		
 		MyGlobal.currentLoc = new GPSTracker(this);
 		if(MyGlobal.currentLoc.canGetLocation())
 		{
@@ -62,6 +64,7 @@ public class EventDetailActivity extends FragmentActivity{
 		{
 			MyGlobal.currentLoc.showSettingsAlert();
 		}
+		
 		
 		LatLng UserLatLng = new LatLng(MyGlobal.currentLoc.getLatitude(), MyGlobal.currentLoc.getLongitude());
 		LatLng EventLatLng = new LatLng(currentEvent.getEventLat(),currentEvent.getEventLong());

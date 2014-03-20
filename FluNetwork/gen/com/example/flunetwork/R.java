@@ -239,10 +239,11 @@ containing a value of this type.
         public static final int ic_plusone_tall_off_client=0x7f02001e;
     }
     public static final class id {
-        public static final int action_settings=0x7f05001d;
+        public static final int action_settings=0x7f05001e;
         public static final int alphaLayer=0x7f050005;
         public static final int eventAddButton=0x7f050017;
         public static final int eventDescription=0x7f050008;
+        public static final int eventDescriptionView=0x7f05001d;
         public static final int eventLayout=0x7f050019;
         public static final int eventLocation=0x7f05001b;
         public static final int eventLocationWhere=0x7f050007;
