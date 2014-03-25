@@ -264,12 +264,12 @@ public class RegisterActivity extends Activity {
         		", check log for details");
       }
       else {
-        TextView messageView = (TextView) findViewById(R.id.msgView);
+        /*TextView messageView = (TextView) findViewById(R.id.msgView);
         messageView.setText("Last 5 Messages read from " + 
             messageEndpoint.getBaseUrl() + ":\n");
         for(MessageData message : messages.getItems()) {
           messageView.append(message.getMessage() + "\n");
-        }
+        }*/
       }
     }   
   }

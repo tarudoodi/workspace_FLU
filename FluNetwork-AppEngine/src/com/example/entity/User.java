@@ -25,16 +25,16 @@ public class User {
 	private PhoneNumber phoneNumber;
 	private String userName;
 	private Boolean isPublisher;
-	private double eventLong;
-	private double eventLat;
+	private double userLong;
+	private double userLat;
 	
-	public User() {
+/*	public User() {
 		phoneNumber = null;
 		userName = "Anonymous";
 		isPublisher = false;
-		eventLat = 0.0;
-		eventLong = 0.0;
-	}
+		userLat = 0.0;
+		userLong = 0.0;
+	}*/
 	
 	/**
 	 * Key is read only.
@@ -63,20 +63,20 @@ public class User {
 	public void setIsPublisher(Boolean isPublisher) {
 		this.isPublisher = isPublisher;
 	}
-	public double getEventLong() {
-		return eventLong;
+	public double getUserLong() {
+		return userLong;
 	}
 
-	public void setEventLong(double eventLong) {
-		this.eventLong = eventLong;
+	public void setUserLong(double userLong) {
+		this.userLong = userLong;
 	}
 
-	public double getEventLat() {
-		return eventLat;
+	public double getUsertLat() {
+		return userLat;
 	}
 
-	public void setEventLat(double eventLat) {
-		this.eventLat = eventLat;
+	public void setUserLat(double userLat) {
+		this.userLat = userLat;
 	}
 	
 }

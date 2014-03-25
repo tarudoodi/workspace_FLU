@@ -9,52 +9,83 @@
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:layout_weight=".5"
-        android:background="@drawable/ic_launcher" 
+        android:background="@drawable/ic_fireworks"
         android:orientation="vertical">
-
+        
+        <LinearLayout 
+            android:id="@+id/eventinfoDateLayout"
+        	android:layout_width="fill_parent"
+        	android:layout_height="wrap_content"
+        	android:orientation="horizontal">
+                  
+        <TextView
+            android:id="@+id/oneEventDate"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:layout_gravity="left"
+            android:gravity="left"
+            android:text="@string/eventDate"
+            android:textSize="15sp"
+            android:textStyle="bold" 
+            android:textColor="@android:color/white"
+            android:background="#80000000"/>
+        
+        
+          <TextView
+            android:id="@+id/oneEventTime"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight=".5"
+            android:layout_gravity="right"
+            android:gravity="right"
+            android:text="@string/eventTime"
+            android:textSize="15sp"
+            android:textStyle="bold" 
+            android:textColor="@android:color/white"
+            android:background="#80000000"/>
+        </LinearLayout>
+        
         <TextView
             android:id="@+id/oneEventName"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:paddingLeft="20dip"
             android:text="@string/eventName"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
+            android:textSize="30sp"
+            android:textStyle="bold" 
+            android:textColor="@android:color/white"
+            android:background="#80000000"/>
+        
         <TextView
             android:id="@+id/oneEventLocation"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="left"
             android:paddingLeft="20dip"
             android:text="@string/eventLocation"
-            android:textSize="40sp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="bold" 
+            android:textColor="@android:color/white"
+            android:background="#80000000"/>
 
-        <TextView
-            android:id="@+id/oneEventTime"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:gravity="right"
-            android:paddingLeft="20dip"
-            android:text="@string/eventTime"
-            android:textSize="20sp"
-            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/oneEventDescription"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
             android:layout_gravity="left"
-            android:gravity="right"
+            android:gravity="bottom"
             android:paddingLeft="20dip"
+            android:paddingBottom="10dip"
             android:text="@string/oneEventDescription"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+            android:textSize="15sp"
+            android:textStyle="bold" 
+            android:textColor="@android:color/white"
+            android:background="#80000000"/>
     </LinearLayout>
-
+    
     <LinearLayout
         android:id="@+id/mapLayout"
         android:layout_width="fill_parent"

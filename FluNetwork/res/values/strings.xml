@@ -1,33 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Flu</string>
+    <string name="app_name">FLU</string>
 
     <!-- <string name="app_name">flu</string> -->
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="welcomeMessage">Did you catch it on the FLU yet?</string>
-    <string name="logInButton">Register</string>
+    <string name="logInButton">Catch the Flu!</string>
     <string name="hintUsername">Username</string>
 
     <!-- COLORS -->
     <color name="mainPageBackgroundColor">#00000000</color>
     <color name="welcomeMessageColor">#FFFF0000</color>
-    <color name="transparentColor">#30bcbcbc</color>
+    <color name="buttonLightColor">#30bcbcbc</color>
+    <color name="imageBackgroundGray">#ffbcbcbc</color>
+   <!--  <color name="textColorFlu">#28192C</color> -->
+    <color name="textColorFlu">#39233E</color>
+    <color name="buttonBackgroundFlu">#80C2906A</color>
+    <color name="actionBarBackgroundColor">#C2906A</color>
 
     <string name="title_activity_events_page">EventsPage</string>
-    <string name="eventName">Fundraiser</string>
-    <string name="eventLocation">Downtown</string>
-    <string name="eventTime">1400 hours</string>
+    <string name="eventName">Fireworks Show</string>
+    <string name="eventLocation">1829 NW 2nd Avenue, Gainesville</string>
+    <string name="eventTime">2000 hrs</string>
+    <string name="eventDate">23 Mar</string>
     <string name="title_activity_add_event">Add Event</string>
-    <string name="eventNameWhat">Enter Event Name</string>
-    <string name="evenLocationWhere">Where is the event?</string>
+    <string name="eventNameWhat">What\'s Happening?</string>
+    <string name="evenLocationWhere">Where is it?</string>
     <string name="eventTimeWhen">When is it?</string>
     <string name="submitEvent">Done!</string>
-    <string name="uploadImage">Upload Event Image</string>
+    <string name="uploadImage">Gather More crowds. Share an image.</string>
     <string name="title_activity_event_list">EventList</string>
-    <string name="oneEventDescription">Bring friends and family!</string>
-    <string name="eventDescription">Tell everyone more about the event. (160 characters)</string>
+    <string name="oneEventDescription">Food and Refreshments will be provided. Paid Parking!</string>
+    <string name="eventDescription">People would love to know more!!! (160 characters)</string>
     <string name="goToMaps">Get Directions</string>
     <string name="dateTimePicker">Set Date and Time</string>
     <string name="title_activity_event_detail">EventDetailActivity</string>

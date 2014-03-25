@@ -5,11 +5,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
 
-import com.example.entity.eventendpoint.model.Date;
+import com.google.api.client.util.DateTime;
 import com.example.entity.eventendpoint.model.Event;
 import com.example.flunetwork.R;
-import com.example.helper.GPSTracker;
-import com.example.helper.MyGlobal;
+import com.example.flunetwork.helper.GPSTracker;
+import com.example.flunetwork.helper.MyGlobal;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -18,17 +18,20 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import android.graphics.drawable.Drawable;
 import android.location.Address;
 import android.location.Geocoder;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class EventDetailActivity extends FragmentActivity{
 
 	GoogleMap map;
 	Event currentEvent;
+	
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +45,16 @@ public class EventDetailActivity extends FragmentActivity{
 		currentEvent.setEventLat(29.6433692 + .01);
 		currentEvent.setEventLong(-82.3474775);
 		currentEvent.setEventName("Awesome Event");
-		currentEvent.setEventTime(new Date());
+		
+		//currentEvent.setEventTime(new Date());
 		
 	}
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
+		this.setTitle(currentEvent.getEventName());
+		
 		MyGlobal.currentLoc = new GPSTracker(this);
 		if(MyGlobal.currentLoc.canGetLocation())
 		{
@@ -58,6 +64,7 @@ public class EventDetailActivity extends FragmentActivity{
 		{
 			MyGlobal.currentLoc.showSettingsAlert();
 		}
+		
 		
 		LatLng UserLatLng = new LatLng(MyGlobal.currentLoc.getLatitude(), MyGlobal.currentLoc.getLongitude());
 		LatLng EventLatLng = new LatLng(currentEvent.getEventLat(),currentEvent.getEventLong());
