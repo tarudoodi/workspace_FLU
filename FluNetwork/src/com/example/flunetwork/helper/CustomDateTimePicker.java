@@ -1,4 +1,4 @@
-package com.example.helper;
+package com.example.flunetwork.helper;
 
 import java.text.SimpleDateFormat; 
 import java.util.Calendar; 
@@ -21,6 +21,8 @@ import android.widget.TimePicker.OnTimeChangedListener;
 import android.widget.ViewSwitcher;
 
 public class CustomDateTimePicker implements OnClickListener {
+	
+	private Boolean dateSet = false;
 	private DatePicker datePicker;
 	private TimePicker timePicker;
 	private ViewSwitcher viewSwitcher;
@@ -153,6 +155,7 @@ public class CustomDateTimePicker implements OnClickListener {
 			dialog.show();
 
 			btn_setDate.performClick();
+			
 		}
 	}
 
@@ -282,14 +285,19 @@ public class CustomDateTimePicker implements OnClickListener {
 												.get(Calendar.SECOND), getAMPM(calendar_date));
 			}
 			if (dialog.isShowing() && isAutoDismiss)
+			{
+				this.setDateSet(true);
 				dialog.dismiss();
+			}
 			break;
 
 		case CANCEL:
 			if (iCustomDateTimeListener != null)
 				iCustomDateTimeListener.onCancel();
 			if (dialog.isShowing())
+			{
 				dialog.dismiss();
+			}
 			break;
 		}
 	}
@@ -399,4 +407,12 @@ public class CustomDateTimePicker implements OnClickListener {
 		 else
 			 return "0" + String.valueOf(integerToPad);
 	 }
+
+	public Boolean isDateSet() {
+		return dateSet;
+	}
+
+	public void setDateSet(Boolean dateSet) {
+		this.dateSet = dateSet;
+	}
 }

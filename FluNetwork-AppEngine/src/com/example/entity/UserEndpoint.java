@@ -151,6 +151,8 @@ public class UserEndpoint {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
+			if(user.getKey() == null)
+				return false;
 			User item = mgr.find(User.class, user.getKey());
 			if (item == null) {
 				contains = false;

@@ -1,6 +1,6 @@
 {
  "kind": "discovery#restDescription",
- "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/28Y_TXQGl4ltcLGOVbHYRNm_WLg\"",
+ "etag": "\"FWXGb4Q2eZqWRcG8B2Ixrr-vrqQ/jJm_3n_BSsGjsSXncvrTySE8M0s\"",
  "discoveryVersion": "v1",
  "id": "userendpoint:v1",
  "name": "userendpoint",
@@ -14,9 +14,9 @@
   "x32": "http://www.google.com/images/icons/product/search-32.gif"
  },
  "protocol": "rest",
- "baseUrl": "https://myapp.appspot.com/_ah/api/userendpoint/v1/",
+ "baseUrl": "https://flu-network.appspot.com/_ah/api/userendpoint/v1/",
  "basePath": "/_ah/api/userendpoint/v1/",
- "rootUrl": "https://myapp.appspot.com/_ah/api/",
+ "rootUrl": "https://flu-network.appspot.com/_ah/api/",
  "servicePath": "userendpoint/v1/",
  "batchPath": "batch",
  "parameters": {
@@ -130,14 +130,6 @@
    "id": "User",
    "type": "object",
    "properties": {
-    "eventLat": {
-     "type": "number",
-     "format": "double"
-    },
-    "eventLong": {
-     "type": "number",
-     "format": "double"
-    },
     "isPublisher": {
      "type": "boolean"
     },
@@ -147,8 +139,20 @@
     "phoneNumber": {
      "$ref": "PhoneNumber"
     },
+    "userLat": {
+     "type": "number",
+     "format": "double"
+    },
+    "userLong": {
+     "type": "number",
+     "format": "double"
+    },
     "userName": {
      "type": "string"
+    },
+    "usertLat": {
+     "type": "number",
+     "format": "double"
     }
    }
   }

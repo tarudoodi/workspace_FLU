@@ -1,9 +1,11 @@
-<resources>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
         by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
+    
+    
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
@@ -13,8 +15,22 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    <style name="FluAppTheme" parent="AppBaseTheme">
+		<item name="android:actionBarStyle">@style/fluActionBarBackground</item>
     </style>
-
+<!-- Adding custom styles  -->
+    <style name="fluWideButtonStyle" parent="android:style/Widget.Button">
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:layout_height">50dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+    <style name="fluWideButtonLightStyle" parent="fluWideButtonStyle">
+        <item name="android:background">@color/buttonLightColor</item>
+    </style>
+    
+    <style name="fluActionBarBackground" parent="android:style/Widget.Holo.ActionBar">
+        <item name="android:background">@color/actionBarBackgroundColor</item>
+        <item name="android:textColor">@color/textColorFlu</item>
+    </style>
 </resources>
